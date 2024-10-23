@@ -1,1 +1,2 @@
-day la duc 123
+day la duc 
+dang hoc git 
