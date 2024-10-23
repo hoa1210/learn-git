@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    onload = function () {
+        var click_cnt = 0;
+        var $html = document.getElementsByTagName("html")[0];
+        var $body = document.getElementsByTagName("body")[0];
+
+        var emojis = [
+            "💻", "🖥️", "🖨️", "📱",
+            "📡", "💾", "🔋", "🔌",
+            "🌐", "🕹️",
+            "🤖", "🧬", "📊", "📈",
+            "🔍", "👨‍💻", "👩‍💻", "🖱️",
+            "⌨️", "📺", "🔒", "🗝️",
+            "🛡️", "💳", "⚙️", "🔧",
+            "🛠️", "📧", "📩", "📬",
+            "🔔", "🛰️", "📡", "🌍",
+            "🏙️", "🎮", "🖥️", "🖱️",
+            "🧩", "👾", "💡", "🌀",
+            "🔄", "🧠", "🌌", "🌐",
+            "🗂️", "📂", "📅", "🗓️",
+            "🔗", "⚡", "🔍", "📋"
+        ];
+
+        $html.addEventListener("click", function (e) {
+            var $elem = document.createElement("b");
+            $elem.style.color = "#E94F06";
+            $elem.style.zIndex = 9999;
+            $elem.style.position = "absolute";
+            $elem.style.userSelect = "none";
+
+            var x = e.pageX;
+            var y = e.pageY;
+            $elem.style.left = x + "px";
+            $elem.style.top = (y - 20) + "px";
+
+            clearInterval(anim);
+
+            var randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            $elem.innerText = randomEmoji;
+
+            $elem.style.fontSize = Math.random() * 16 + 14 + "px";
+            var increase = 0;
+            var anim;
+
+            setTimeout(function () {
+                anim = setInterval(function () {
+                    if (++increase == 250) {
+                        clearInterval(anim);
+                        $body.removeChild($elem);
+                    }
+                    $elem.style.top = y - 20 - increase + "px";
+                    $elem.style.opacity = (250 - increase) / 120;
+                }, 8);
+            }, 70);
+
+            $body.appendChild($elem);
+        })
+    };
+</script>
+
+</html>
